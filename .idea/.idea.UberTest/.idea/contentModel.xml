@@ -24,8 +24,14 @@
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Content" t="Include">
+          <e p="bootstrap-theme.css" t="Include" />
+          <e p="bootstrap-theme.css.map" t="Include" />
+          <e p="bootstrap-theme.min.css" t="Include" />
+          <e p="bootstrap-theme.min.css.map" t="Include" />
           <e p="bootstrap.css" t="Include" />
+          <e p="bootstrap.css.map" t="Include" />
           <e p="bootstrap.min.css" t="Include" />
+          <e p="bootstrap.min.css.map" t="Include" />
           <e p="Site.css" t="Include" />
         </e>
         <e p="Controllers" t="Include">
@@ -37,6 +43,7 @@
           <e p="glyphicons-halflings-regular.svg" t="Include" />
           <e p="glyphicons-halflings-regular.ttf" t="Include" />
           <e p="glyphicons-halflings-regular.woff" t="Include" />
+          <e p="glyphicons-halflings-regular.woff2" t="Include" />
         </e>
         <e p="Global.asax" t="Include" />
         <e p="Global.asax.cs" t="Include" />
@@ -50,16 +57,23 @@
           <e p="bootstrap.js" t="Include" />
           <e p="bootstrap.min.js" t="Include" />
           <e p="jquery-1.10.2.intellisense.js" t="Include" />
-          <e p="jquery-1.10.2.js" t="Include" />
-          <e p="jquery-1.10.2.min.js" t="Include" />
-          <e p="jquery-1.10.2.min.map" t="Include" />
+          <e p="jquery-3.3.1-vsdoc.js" t="Include" />
+          <e p="jquery-3.3.1.js" t="Include" />
+          <e p="jquery-3.3.1.min.js" t="Include" />
+          <e p="jquery-3.3.1.min.map" t="Include" />
+          <e p="jquery-3.3.1.slim.js" t="Include" />
+          <e p="jquery-3.3.1.slim.min.js" t="Include" />
+          <e p="jquery-3.3.1.slim.min.map" t="Include" />
           <e p="jquery.validate-vsdoc.js" t="Include" />
           <e p="jquery.validate.js" t="Include" />
           <e p="jquery.validate.min.js" t="Include" />
           <e p="jquery.validate.unobtrusive.js" t="Include" />
           <e p="jquery.validate.unobtrusive.min.js" t="Include" />
           <e p="modernizr-2.6.2.js" t="Include" />
+          <e p="modernizr-2.8.3.js" t="Include" />
           <e p="respond.js" t="Include" />
+          <e p="respond.matchmedia.addListener.js" t="Include" />
+          <e p="respond.matchmedia.addListener.min.js" t="Include" />
           <e p="respond.min.js" t="Include" />
         </e>
         <e p="Views" t="Include">
