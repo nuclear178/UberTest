@@ -20,6 +20,7 @@
         <e p="App_Start" t="Include">
           <e p="BundleConfig.cs" t="Include" />
           <e p="FilterConfig.cs" t="Include" />
+          <e p="NinjectRegistrations.cs" t="Include" />
           <e p="RouteConfig.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
