@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using Domain.Models;
 using Domain.Services.Repositories;
 
@@ -15,27 +17,35 @@ namespace Infrastructure.Persistence.EntityFramework.Repositories
 
         public Course Find(int courseId)
         {
-            throw new System.NotImplementedException();
+            return _context.Courses.Find(courseId);
         }
 
         public IEnumerable<Course> FindAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Courses.ToList();
         }
 
         public void Insert(Course entity)
         {
-            throw new System.NotImplementedException();
+            _context.Courses.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Update(Course entity)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
         }
 
         public void Remove(int courseId)
         {
-            throw new System.NotImplementedException();
+            Course course = _context.Courses.Find(courseId);
+            if (course != null)
+            {
+                _context.Courses.Remove(course);
+            }
+
+            _context.SaveChanges();
         }
     }
 }
