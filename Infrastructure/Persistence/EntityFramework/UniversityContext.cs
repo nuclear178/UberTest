@@ -10,5 +10,15 @@ namespace Infrastructure.Persistence.EntityFramework
         }
 
         public DbSet<Course> Courses { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new UniversityDbInitializer());
+
+            modelBuilder.Entity<Course>()
+                .HasKey(model => model.Id);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

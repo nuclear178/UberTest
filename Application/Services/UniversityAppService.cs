@@ -24,10 +24,27 @@ namespace Application.Services
         {
             var createdCourse = new Course
             {
+                SerialNumber = _serialNumberGenerator.Generate(),
                 Title = dto.Title,
                 Description = dto.Description,
                 PublicationDate = DateTime.Now,
-                SerialNumber = _serialNumberGenerator.Generate()
+                /*SpendingTime = new TimeRange
+                {
+                    StartDate = new Time
+                    {
+                        DayOfWeek = dto.StartDayOfWeek,
+                        Hour = dto.StartHour
+                    },
+                    EndDate = new Time
+                    {
+                        DayOfWeek = dto.EndDayOfWeek,
+                        Hour = dto.EndHour
+                    }
+                }*/
+                StartDayOfWeek = dto.StartDayOfWeek,
+                StartHour = dto.StartHour,
+                EndDayOfWeek = dto.EndDayOfWeek,
+                EndHour = dto.EndHour
             };
 
             _courseRepository.Insert(createdCourse);

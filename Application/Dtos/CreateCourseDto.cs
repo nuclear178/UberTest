@@ -6,7 +6,9 @@ namespace Application.Dtos
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DayOfWeek StartDayOfWeek { get; set; }
+        public int StartHour { get; set; }
+        public DayOfWeek EndDayOfWeek { get; set; }
+        public int EndHour { get; set; }
     }
 }

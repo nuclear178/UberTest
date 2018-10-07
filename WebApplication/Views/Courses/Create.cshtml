@@ -37,6 +37,7 @@
             <div class="col-md-10">
                 @Html.Partial("_Calendar", Model)
                 @Html.ValidationMessageFor(model => model.SpendingTimeStart, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.SpendingTimeEnd, "", new {@class = "text-danger"})
             </div>
         </div>
 

@@ -6,6 +6,7 @@ using Application.Dtos;
 using Application.Services;
 using Domain;
 using WebApplication.Forms.Courses;
+using WebApplication.Models;
 using WebApplication.ViewModels.Courses;
 
 namespace WebApplication.Controllers
@@ -76,12 +77,18 @@ namespace WebApplication.Controllers
 
             try
             {
+                var timeParser = new TimeParser();
+                (DayOfWeek, int) timeStart = timeParser.Parse(form.SpendingTimeStart);
+                (DayOfWeek, int) timeEnd = timeParser.Parse(form.SpendingTimeEnd);
+
                 var input = new CreateCourseDto
                 {
                     Title = form.Title,
                     Description = form.Description,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now,
+                    StartDayOfWeek = timeStart.Item1,
+                    StartHour = timeStart.Item2,
+                    EndDayOfWeek = timeEnd.Item1,
+                    EndHour = timeEnd.Item2
                 };
                 _universityService.CreateCourse(input, out var id);
 
@@ -135,6 +142,7 @@ namespace WebApplication.Controllers
             {
                 var input = new EditCourseDto
                 {
+                    Id = form.Id,
                     Title = form.Title,
                     Description = form.Description,
                 };

@@ -50,6 +50,7 @@
     <Compile Include="Domain\SerialNumberGenerator.cs" />
     <Compile Include="Persistence\EntityFramework\Repositories\EfCourseRepository.cs" />
     <Compile Include="Persistence\EntityFramework\UniversityContext.cs" />
+    <Compile Include="Persistence\EntityFramework\UniversityDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
