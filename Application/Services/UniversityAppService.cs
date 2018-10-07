@@ -28,23 +28,15 @@ namespace Application.Services
                 Title = dto.Title,
                 Description = dto.Description,
                 PublicationDate = DateTime.Now,
-                /*SpendingTime = new TimeRange
+                SpendingTime = new Time
                 {
-                    StartDate = new Time
-                    {
-                        DayOfWeek = dto.StartDayOfWeek,
-                        Hour = dto.StartHour
-                    },
-                    EndDate = new Time
-                    {
-                        DayOfWeek = dto.EndDayOfWeek,
-                        Hour = dto.EndHour
-                    }
-                }*/
-                StartDayOfWeek = dto.StartDayOfWeek,
+                    DayOfWeek = dto.StartDayOfWeek,
+                    StartTimeHour = dto.StartHour,
+                    EndTimeHour = dto.EndHour
+                }
+                /*DayOfWeek = dto.StartDayOfWeek,
                 StartHour = dto.StartHour,
-                EndDayOfWeek = dto.EndDayOfWeek,
-                EndHour = dto.EndHour
+                EndHour = dto.EndHour*/
             };
 
             _courseRepository.Insert(createdCourse);

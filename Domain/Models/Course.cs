@@ -9,10 +9,9 @@ namespace Domain.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime PublicationDate { get; set; }
-        /*public TimeRange SpendingTime { get; set; }*/
-        public DayOfWeek StartDayOfWeek { get; set; }
+        /*public DayOfWeek DayOfWeek { get; set; }
         public int StartHour { get; set; }
-        public DayOfWeek EndDayOfWeek { get; set; }
-        public int EndHour { get; set; }
+        public int EndHour { get; set; }*/
+        public Time SpendingTime { get; set; }
     }
 }

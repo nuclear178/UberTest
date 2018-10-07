@@ -15,13 +15,13 @@
         <th class="calendar-cell-corner">@*top left corner*@</th>
         @foreach (var day in daysOfWeek)
         {
-            <th class=" calendar-cell-header">@day.</th>
+            <th class="calendar-cell-header">@day.</th>
         }
     </tr>
     @for (var i = 9; i <= 17; i++)
     {
         <tr>
-            <th class="calendar-cell calendar-cell-header calendar-cell-hour">@i.ToString().PadLeft(2, '0'):00</th>
+            <th class="calendar-cell-header calendar-cell-hour">@i.ToString().PadLeft(2, '0'):00</th>
             @foreach (var day in daysOfWeek)
             {
                 <td class="calendar-cell calendar-cell-active" data-day="@day" data-hour="@i"></td>

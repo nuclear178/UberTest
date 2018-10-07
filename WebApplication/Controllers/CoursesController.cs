@@ -87,7 +87,6 @@ namespace WebApplication.Controllers
                     Description = form.Description,
                     StartDayOfWeek = timeStart.Item1,
                     StartHour = timeStart.Item2,
-                    EndDayOfWeek = timeEnd.Item1,
                     EndHour = timeEnd.Item2
                 };
                 _universityService.CreateCourse(input, out var id);
