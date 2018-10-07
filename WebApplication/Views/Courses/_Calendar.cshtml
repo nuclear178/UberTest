@@ -29,3 +29,20 @@
         </tr>
     }
 </table>
+<script>
+    function toggleCell(cell) {
+        if (cell.hasClass('calendar-cell-selected')) {
+            cell.removeClass('calendar-cell-selected');
+        } else {
+            cell.addClass('calendar-cell-selected');
+        }
+    }
+
+    $('.calendar-cell-td').each(function(index) {
+        var cell = $(this);
+        console.log(index + ": " + cell.data('day') + ", " + cell.data('hour'));
+        cell.click(function() {
+            toggleCell(cell);
+        });
+    });
+</script>
