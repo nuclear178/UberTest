@@ -1,0 +1,14 @@
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\Infrastructure.dll
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\Infrastructure.pdb
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\Domain.dll
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\Domain.pdb
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\obj\Debug\Infrastructure.csprojAssemblyReference.cache
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\obj\Debug\Infrastructure.dll
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\Infrastructure.dll.config
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\EntityFramework.dll
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\EntityFramework.xml
+C:\Users\Alex\RiderProjects\UberTest\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml

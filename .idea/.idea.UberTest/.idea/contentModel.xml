@@ -8,23 +8,50 @@
       <e p="Application" t="IncludeRecursive">
         <e p="Application.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Dtos" t="Include">
+          <e p="CourseDto.cs" t="Include" />
+          <e p="CreateCourseDto.cs" t="Include" />
+          <e p="EditCourseDto.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="IUniversityAppService.cs" t="Include" />
+          <e p="UniversityAppService.cs" t="Include" />
         </e>
       </e>
       <e p="Domain" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="Course.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
+        <e p="Services" t="Include">
+          <e p="Repositories" t="Include">
+            <e p="ICourseRepository.cs" t="Include" />
+          </e>
+        </e>
       </e>
       <e p="Infrastructure" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Infrastructure.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Persistence" t="Include">
+          <e p="EntityFramework" t="Include">
+            <e p="Repositories" t="Include">
+              <e p="EfCourseRepository.cs" t="Include" />
+            </e>
+            <e p="UniversityContext.cs" t="Include" />
+          </e>
+        </e>
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
