@@ -87,6 +87,7 @@
           <e p="Site.css" t="Include" />
         </e>
         <e p="Controllers" t="Include">
+          <e p="CoursesController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />
@@ -97,9 +98,9 @@
           <e p="glyphicons-halflings-regular.woff" t="Include" />
           <e p="glyphicons-halflings-regular.woff2" t="Include" />
         </e>
+        <e p="Forms" t="Include" />
         <e p="Global.asax" t="Include" />
         <e p="Global.asax.cs" t="Include" />
-        <e p="Models" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Properties" t="Include">
@@ -128,8 +129,16 @@
           <e p="respond.matchmedia.addListener.min.js" t="Include" />
           <e p="respond.min.js" t="Include" />
         </e>
+        <e p="ViewModels" t="Include" />
         <e p="Views" t="Include">
           <e p="_ViewStart.cshtml" t="Include" />
+          <e p="Courses" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
           <e p="Home" t="Include">
             <e p="About.cshtml" t="Include" />
             <e p="Contact.cshtml" t="Include" />
