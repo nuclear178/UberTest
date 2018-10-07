@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Application.Dtos;
 using Application.Dtos.Assemblers;
+using Domain;
 using Domain.Models;
 using Domain.Services;
 using Domain.Services.Repositories;
@@ -37,6 +38,11 @@ namespace Application.Services
         public void EditCourse(EditCourseDto dto)
         {
             Course editedCourse = _courseRepository.Find(dto.Id);
+            if (editedCourse == null)
+            {
+                throw new DomainException("Failed to edit course.");
+            }
+
             editedCourse.Title = dto.Title;
             editedCourse.Description = dto.Description;
 
@@ -50,8 +56,13 @@ namespace Application.Services
 
         public CourseDto FindCourse(int courseId)
         {
-            return new CourseDtoAssembler()
-                .ConvertToDto(_courseRepository.Find(courseId));
+            Course foundCourse = _courseRepository.Find(courseId);
+            if (foundCourse == null)
+            {
+                throw new DomainException("Failed to find course.");
+            }
+
+            return new CourseDtoAssembler().ConvertToDto(foundCourse);
         }
 
         public IEnumerable<CourseDto> ListCourses()

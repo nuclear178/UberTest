@@ -29,6 +29,7 @@
       <e p="Domain" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Domain.csproj" t="IncludeRecursive" />
+        <e p="DomainException.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="Course.cs" t="Include" />
         </e>

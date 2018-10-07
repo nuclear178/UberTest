@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using Application.Dtos;
 using Application.Services;
+using Domain;
 using WebApplication.Forms.Courses;
 using WebApplication.ViewModels.Courses;
 
@@ -49,7 +51,7 @@ namespace WebApplication.Controllers
 
                 return View(viewModel);
             }
-            catch (ApplicationException e)
+            catch (DomainException e)
             {
                 Console.WriteLine(e); //Log
                 return HttpNotFound();
@@ -82,12 +84,13 @@ namespace WebApplication.Controllers
                     EndDate = DateTime.Now,
                 };
                 _universityService.CreateCourse(input, out var id);
+
                 return RedirectToAction("Details", new {id});
             }
-            catch (ApplicationException e)
+            catch (DomainException e)
             {
                 Console.WriteLine(e); //Log
-                return HttpNotFound();
+                throw new HttpException(503, e.Message);
             }
         }
 
@@ -99,15 +102,23 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            CourseDto model = _universityService.FindCourse(id.Value);
-            var form = new EditCourseForm
+            try
             {
-                Id = model.Id,
-                Title = model.Title,
-                Description = model.Description
-            };
+                CourseDto model = _universityService.FindCourse(id.Value);
+                var form = new EditCourseForm
+                {
+                    Id = model.Id,
+                    Title = model.Title,
+                    Description = model.Description
+                };
 
-            return View(form);
+                return View(form);
+            }
+            catch (DomainException e)
+            {
+                Console.WriteLine(e); //Log
+                return HttpNotFound();
+            }
         }
 
         // POST: Courses/Edit/5
@@ -131,10 +142,10 @@ namespace WebApplication.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (ApplicationException e)
+            catch (DomainException e)
             {
                 Console.WriteLine(e); //Log
-                return HttpNotFound();
+                throw new HttpException(503, e.Message);
             }
         }
 
