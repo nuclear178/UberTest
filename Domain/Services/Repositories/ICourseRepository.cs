@@ -5,7 +5,7 @@ namespace Domain.Services.Repositories
 {
     public interface ICourseRepository
     {
-        Course Find(int courseId);
+        Course Find(int id);
 
         IEnumerable<Course> FindAll();
 
@@ -13,6 +13,6 @@ namespace Domain.Services.Repositories
 
         void Update(Course entity);
 
-        void Remove(int courseId);
+        void Remove(int id);
     }
 }

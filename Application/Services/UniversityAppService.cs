@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Application.Dtos;
+using Application.Dtos.Assemblers;
+using Domain.Models;
+using Domain.Services;
 using Domain.Services.Repositories;
 
 namespace Application.Services
@@ -7,35 +11,53 @@ namespace Application.Services
     public class UniversityAppService : IUniversityAppService
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly ISerialNumberGenerator _serialNumberGenerator;
 
-        public UniversityAppService(ICourseRepository courseRepository)
+        public UniversityAppService(ICourseRepository courseRepository, ISerialNumberGenerator serialNumberGenerator)
         {
             _courseRepository = courseRepository;
+            _serialNumberGenerator = serialNumberGenerator;
         }
 
         public void CreateCourse(CreateCourseDto dto, out int id)
         {
-            throw new System.NotImplementedException();
+            var createdCourse = new Course
+            {
+                Title = dto.Title,
+                Description = dto.Description,
+                PublicationDate = DateTime.Now,
+                SerialNumber = _serialNumberGenerator.Generate()
+            };
+
+            _courseRepository.Insert(createdCourse);
+
+            id = createdCourse.Id;
         }
 
         public void EditCourse(EditCourseDto dto)
         {
-            throw new System.NotImplementedException();
+            Course editedCourse = _courseRepository.Find(dto.Id);
+            editedCourse.Title = dto.Title;
+            editedCourse.Description = dto.Description;
+
+            _courseRepository.Update(editedCourse);
         }
 
         public void DeleteCourse(int courseId)
         {
-            throw new System.NotImplementedException();
+            _courseRepository.Remove(courseId);
         }
 
         public CourseDto FindCourse(int courseId)
         {
-            throw new System.NotImplementedException();
+            return new CourseDtoAssembler()
+                .ConvertToDto(_courseRepository.Find(courseId));
         }
 
         public IEnumerable<CourseDto> ListCourses()
         {
-            throw new System.NotImplementedException();
+            return new CourseDtoAssembler()
+                .ConvertToDto(_courseRepository.FindAll());
         }
     }
 }

@@ -38,6 +38,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\Assemblers\CourseDtoAssembler.cs" />
+    <Compile Include="Dtos\Assemblers\DtoAssembler.cs" />
     <Compile Include="Dtos\CourseDto.cs" />
     <Compile Include="Dtos\CreateCourseDto.cs" />
     <Compile Include="Dtos\EditCourseDto.cs" />

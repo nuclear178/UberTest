@@ -1,6 +1,8 @@
 using System.Web.Mvc;
 using Application.Services;
+using Domain.Services;
 using Domain.Services.Repositories;
+using Infrastructure.Domain;
 using Infrastructure.Persistence.EntityFramework;
 using Infrastructure.Persistence.EntityFramework.Repositories;
 using Ninject.Modules;
@@ -22,7 +24,7 @@ namespace WebApplication
             Bind<IUniversityAppService>().To<UniversityAppService>();
 
             //Domain services
-            //...
+            Bind<ISerialNumberGenerator>().To<SerialNumberGenerator>();
         }
     }
 }

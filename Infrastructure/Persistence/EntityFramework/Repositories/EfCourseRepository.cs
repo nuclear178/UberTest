@@ -15,9 +15,9 @@ namespace Infrastructure.Persistence.EntityFramework.Repositories
             _context = context;
         }
 
-        public Course Find(int courseId)
+        public Course Find(int id)
         {
-            return _context.Courses.Find(courseId);
+            return _context.Courses.Find(id);
         }
 
         public IEnumerable<Course> FindAll()
@@ -37,9 +37,9 @@ namespace Infrastructure.Persistence.EntityFramework.Repositories
             _context.SaveChanges();
         }
 
-        public void Remove(int courseId)
+        public void Remove(int id)
         {
-            Course course = _context.Courses.Find(courseId);
+            Course course = _context.Courses.Find(id);
             if (course != null)
             {
                 _context.Courses.Remove(course);

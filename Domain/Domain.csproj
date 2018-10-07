@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ISerialNumberGenerator.cs" />
     <Compile Include="Services\Repositories\ICourseRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
