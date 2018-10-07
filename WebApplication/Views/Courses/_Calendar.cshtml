@@ -1,0 +1,26 @@
+@* ReSharper disable UnknownCssClass *@
+@{
+    string[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri"};
+}
+<link href="@Url.Content("~/Content/Calendar.css")" rel="stylesheet" type="text/css"/>
+<table class="table-bordered">
+    <tr>
+        <th class="calendar-cell-corner">@*top left corner*@</th>
+        @foreach (var day in daysOfWeek)
+        {
+            <th class="calendar-cell calendar-cell-th">@day.</th>
+        }
+    </tr>
+    @for (var i = 9; i <= 17; i++)
+    {
+        <tr>
+            <th class="calendar-cell calendar-cell-th calendar-cell-hour">@i.ToString().PadLeft(2, '0'):00</th>
+            @foreach (var day in daysOfWeek)
+            {
+                <td class="calendar-cell calendar-cell-td" data-day="@day" data-hour="@i"></td>
+            }
+        </tr>
+    }
+</table>
+@*@Html.Hidden("SpendingTimeStart")
+@Html.Hidden("SpendingTimeEnd")*@

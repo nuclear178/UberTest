@@ -84,6 +84,7 @@
           <e p="bootstrap.css.map" t="Include" />
           <e p="bootstrap.min.css" t="Include" />
           <e p="bootstrap.min.css.map" t="Include" />
+          <e p="Calendar.css" t="Include" />
           <e p="Site.css" t="Include" />
         </e>
         <e p="Controllers" t="Include">
@@ -133,6 +134,7 @@
         <e p="Views" t="Include">
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Courses" t="Include">
+            <e p="_Calendar.cshtml" t="Include" />
             <e p="Create.cshtml" t="Include" />
             <e p="Delete.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />

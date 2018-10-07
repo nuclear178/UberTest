@@ -1,0 +1,24 @@
+.calendar-cell {
+    min-width: 45px;
+    text-align: center;
+}
+
+.calendar-cell-corner {
+    border-color: white;
+}
+
+.calendar-cell-th {
+    background-color: powderblue;
+}
+
+.calendar-cell-td:hover {
+    background-color: lightgreen;
+}
+
+.calendar-cell-selected {
+    background-color: lightseagreen;
+}
+
+.calendar-cell-hour {
+    min-width: 54px;
+}
