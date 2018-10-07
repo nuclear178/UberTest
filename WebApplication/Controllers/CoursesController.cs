@@ -1,21 +1,31 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Domain.Models;
-using Infrastructure.Persistence.EntityFramework;
+using Application.Dtos;
+using Application.Services;
+using WebApplication.Forms.Courses;
+using WebApplication.ViewModels.Courses;
 
 namespace WebApplication.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly UniversityContext _db = new UniversityContext();
+        private readonly IUniversityAppService _universityService;
+
+        public CoursesController(IUniversityAppService universityService)
+        {
+            _universityService = universityService;
+        }
 
         // GET: Courses
         public ActionResult Index()
         {
-            return View(_db.Courses.ToList());
+            var viewModel = new CourseIndexViewModel
+            {
+                Courses = _universityService.ListCourses()
+            };
+
+            return View(viewModel);
         }
 
         // GET: Courses/Details/5
@@ -26,13 +36,23 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Course course = _db.Courses.Find(id);
-            if (course == null)
+            try
+            {
+                CourseDto model = _universityService.FindCourse(id.Value);
+                var viewModel = new CourseDetailsViewModel
+                {
+                    Id = model.Id,
+                    Title = model.Title,
+                    Description = model.Description,
+                    PublicationDate = model.PublicationDate
+                };
+
+                return View(viewModel);
+            }
+            catch (ApplicationException e)
             {
                 return HttpNotFound();
             }
-
-            return View(course);
         }
 
         // GET: Courses/Create
@@ -42,21 +62,24 @@ namespace WebApplication.Controllers
         }
 
         // POST: Courses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,SerialNumber,Title,Description,PublicationDate,SpendingTime")]
-            Course course)
+        public ActionResult Create(CreateCourseForm form)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _db.Courses.Add(course);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(form);
             }
 
-            return View(course);
+            var input = new CreateCourseDto
+            {
+                Title = form.Title,
+                Description = form.Description,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+            };
+            _universityService.CreateCourse(input, out var id);
+            return RedirectToAction("Details", new {id});
         }
 
         // GET: Courses/Edit/5
@@ -67,31 +90,35 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Course course = _db.Courses.Find(id);
-            if (course == null)
+            CourseDto model = _universityService.FindCourse(id.Value);
+            var form = new EditCourseForm
             {
-                return HttpNotFound();
-            }
+                Id = model.Id,
+                Title = model.Title,
+                Description = model.Description
+            };
 
-            return View(course);
+            return View(form);
         }
 
         // POST: Courses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SerialNumber,Title,Description,PublicationDate,SpendingTime")]
-            Course course)
+        public ActionResult Edit(EditCourseForm form)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _db.Entry(course).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(form);
             }
 
-            return View(course);
+            var input = new EditCourseDto
+            {
+                Title = form.Title,
+                Description = form.Description,
+            };
+            _universityService.EditCourse(input);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Courses/Delete/5
@@ -102,34 +129,9 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Course course = _db.Courses.Find(id);
-            if (course == null)
-            {
-                return HttpNotFound();
-            }
+            _universityService.DeleteCourse(id.Value);
 
-            return View(course);
-        }
-
-        // POST: Courses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Course course = _db.Courses.Find(id);
-            _db.Courses.Remove(course ?? throw new HttpException(404, "Not found"));
-            _db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-
-            base.Dispose(disposing);
         }
     }
 }

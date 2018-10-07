@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Domain.Models.Course>
+﻿@using Application.Dtos
+@model WebApplication.ViewModels.Courses.CourseIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -12,29 +13,20 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SerialNumber)
+            @Html.DisplayName("Title")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayName("Description")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SpendingTime)
+            @Html.DisplayName("Publication date")
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (CourseDto item in Model.Courses)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SerialNumber)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -43,9 +35,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PublicationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpendingTime)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |

@@ -99,7 +99,12 @@
           <e p="glyphicons-halflings-regular.woff" t="Include" />
           <e p="glyphicons-halflings-regular.woff2" t="Include" />
         </e>
-        <e p="Forms" t="Include" />
+        <e p="Forms" t="Include">
+          <e p="Courses" t="Include">
+            <e p="CreateCourseForm.cs" t="Include" />
+            <e p="EditCourseForm.cs" t="Include" />
+          </e>
+        </e>
         <e p="Global.asax" t="Include" />
         <e p="Global.asax.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
@@ -130,7 +135,12 @@
           <e p="respond.matchmedia.addListener.min.js" t="Include" />
           <e p="respond.min.js" t="Include" />
         </e>
-        <e p="ViewModels" t="Include" />
+        <e p="ViewModels" t="Include">
+          <e p="Courses" t="Include">
+            <e p="CourseDetailsViewModel.cs" t="Include" />
+            <e p="CourseIndexViewModel.cs" t="Include" />
+          </e>
+        </e>
         <e p="Views" t="Include">
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Courses" t="Include">

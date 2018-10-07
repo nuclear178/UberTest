@@ -1,8 +1,15 @@
 @* ReSharper disable UnknownCssClass *@
+@model WebApplication.Forms.Courses.CreateCourseForm
+
 @{
     string[] daysOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri"};
 }
+
 <link href="@Url.Content("~/Content/Calendar.css")" rel="stylesheet" type="text/css"/>
+
+@Html.HiddenFor(model => model.SpendingTimeStart)
+@Html.HiddenFor(model => model.SpendingTimeEnd)
+
 <table class="table-bordered">
     <tr>
         <th class="calendar-cell-corner">@*top left corner*@</th>
@@ -22,5 +29,3 @@
         </tr>
     }
 </table>
-@*@Html.Hidden("SpendingTimeStart")
-@Html.Hidden("SpendingTimeEnd")*@
