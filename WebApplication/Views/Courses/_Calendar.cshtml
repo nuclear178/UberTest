@@ -81,7 +81,7 @@
             var day = currentCell.data('day');
             var hour = currentCell.data('hour');
             currentCell.click(function() {
-                selectCell(currentCell);//range
+                selectCell(currentCell); //TODO :: range
                 deactivateAfter(day, hour);
                 fillTimeEndInput(day, hour);
 
@@ -117,7 +117,8 @@
     }
 
     function deactivateAfter(day, hour) {
-
+        //TODO :: IMPL
+        console.log(day + hour);
     }
 
     function fillTimeEndInput(day, hour) {
@@ -145,17 +146,4 @@
     function fillTimeStartInput(day, hour) {
         $('#SpendingTimeStart').val(day + '|' + hour);
     }
-
-
-    /*$('.calendar-cell-active').each(function(index) {
-        var cell = $(this);
-        var day = cell.data('day');
-        var hour = cell.data('hour');
-        console.log(index + ": " + day + ", " + hour);
-        cell.click(function() {
-            selectCell(cell);
-            deactivateBefore(day, hour);
-            fillTimeStartInput(day, hour);
-        });
-    });*/
 </script>
