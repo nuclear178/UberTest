@@ -81,7 +81,7 @@
             var day = currentCell.data('day');
             var hour = currentCell.data('hour');
             currentCell.click(function() {
-                selectRange(currentCell);
+                selectCell(currentCell);//range
                 deactivateAfter(day, hour);
                 fillTimeEndInput(day, hour);
 
@@ -126,12 +126,15 @@
 
     function selectCell(cell) {
         cell.addClass('calendar-cell-selected');
+        cell.addClass('calendar-cell-inactive');
+        cell.removeClass('calendar-cell-active');
+        cell.unbind('click');
     }
 
     function deactivateBefore(day, hour) {
         $('.calendar-cell-active').each(function() {
             var cell = $(this);
-            if (cell.data('day') !== day || cell.data('hour') <= hour) {
+            if (cell.data('day') !== day || cell.data('hour') < hour) {
                 cell.removeClass('calendar-cell-active');
                 cell.addClass('calendar-cell-inactive');
                 cell.unbind('click');
@@ -144,7 +147,7 @@
     }
 
 
-    $('.calendar-cell-active').each(function(index) {
+    /*$('.calendar-cell-active').each(function(index) {
         var cell = $(this);
         var day = cell.data('day');
         var hour = cell.data('hour');
@@ -154,5 +157,5 @@
             deactivateBefore(day, hour);
             fillTimeStartInput(day, hour);
         });
-    });
+    });*/
 </script>
