@@ -15,34 +15,144 @@
         <th class="calendar-cell-corner">@*top left corner*@</th>
         @foreach (var day in daysOfWeek)
         {
-            <th class="calendar-cell calendar-cell-th">@day.</th>
+            <th class=" calendar-cell-header">@day.</th>
         }
     </tr>
     @for (var i = 9; i <= 17; i++)
     {
         <tr>
-            <th class="calendar-cell calendar-cell-th calendar-cell-hour">@i.ToString().PadLeft(2, '0'):00</th>
+            <th class="calendar-cell calendar-cell-header calendar-cell-hour">@i.ToString().PadLeft(2, '0'):00</th>
             @foreach (var day in daysOfWeek)
             {
-                <td class="calendar-cell calendar-cell-td" data-day="@day" data-hour="@i"></td>
+                <td class="calendar-cell calendar-cell-active" data-day="@day" data-hour="@i"></td>
             }
         </tr>
     }
 </table>
 <script>
-    function toggleCell(cell) {
-        if (cell.hasClass('calendar-cell-selected')) {
-            cell.removeClass('calendar-cell-selected');
-        } else {
-            cell.addClass('calendar-cell-selected');
+
+    var STATE_SELECTED_NONE = 0;
+    var STATE_SELECTED_START = 1;
+    var STATE_SELECTED_BOTH = 2;
+
+    function defineState() {
+        switch ($('.calendar-cell-selected').length) {
+        case 0:
+            return STATE_SELECTED_NONE;
+        case 2:
+            return STATE_SELECTED_BOTH;
+        default:
+            return STATE_SELECTED_START;
         }
     }
 
-    $('.calendar-cell-td').each(function(index) {
+    function setStateSelectedNone() {
+        state = STATE_SELECTED_NONE;
+        $('#SpendingTimeStart').val(null);
+        $('#SpendingTimeEnd').val(null);
+
+        $('.calendar-cell').each(function() {
+            var currentCell = $(this);
+
+            currentCell.unbind('click');
+            currentCell.removeClass('calendar-cell-selected');
+            currentCell.removeClass('calendar-cell-inactive');
+            currentCell.addClass('calendar-cell-active');
+
+            var day = currentCell.data('day');
+            var hour = currentCell.data('hour');
+            currentCell.click(function() {
+                selectCell(currentCell);
+                deactivateBefore(day, hour);
+                fillTimeStartInput(day, hour);
+
+                setStateSelectedStart();
+            });
+        });
+    }
+
+    function setStateSelectedStart() {
+        state = STATE_SELECTED_START;
+        $('.calendar-cell-active').each(function() {
+            var currentCell = $(this);
+
+            currentCell.unbind('click');
+
+            var day = currentCell.data('day');
+            var hour = currentCell.data('hour');
+            currentCell.click(function() {
+                selectRange(currentCell);
+                deactivateAfter(day, hour);
+                fillTimeEndInput(day, hour);
+
+                setStateSelectedBoth();
+            });
+        });
+    }
+
+    function setStateSelectedBoth() {
+        state = STATE_SELECTED_BOTH;
+        $('.calendar-cell').each(function() {
+            var currentCell = $(this);
+
+            currentCell.unbind('click');
+            if (!currentCell.hasClass('calendar-cell-selected')) {
+                currentCell.removeClass('calendar-cell-active');
+                currentCell.addClass('calendar-cell-inactive');
+            }
+
+            currentCell.click(function() {
+                setStateSelectedNone();
+            });
+        });
+    }
+
+    var state = defineState();
+    if (state === STATE_SELECTED_NONE) {
+        setStateSelectedNone();
+    }
+
+    function selectRange(cell) {
+        selectCell(cell);
+    }
+
+    function deactivateAfter(day, hour) {
+
+    }
+
+    function fillTimeEndInput(day, hour) {
+        $('#SpendingTimeEnd').val(day + '|' + hour);
+    }
+
+    function selectCell(cell) {
+        cell.addClass('calendar-cell-selected');
+    }
+
+    function deactivateBefore(day, hour) {
+        $('.calendar-cell-active').each(function() {
+            var cell = $(this);
+            if (cell.data('day') !== day || cell.data('hour') <= hour) {
+                cell.removeClass('calendar-cell-active');
+                cell.addClass('calendar-cell-inactive');
+                cell.unbind('click');
+            }
+        });
+    }
+
+    function fillTimeStartInput(day, hour) {
+        $('#SpendingTimeStart').val(day + '|' + hour);
+    }
+
+
+    $('.calendar-cell-active').each(function(index) {
         var cell = $(this);
-        console.log(index + ": " + cell.data('day') + ", " + cell.data('hour'));
+        var day = cell.data('day');
+        var hour = cell.data('hour');
+        console.log(index + ": " + day + ", " + hour);
         cell.click(function() {
-            toggleCell(cell);
+            selectCell(cell);
+            deactivateBefore(day, hour);
+            fillTimeStartInput(day, hour);
         });
     });
 </script>

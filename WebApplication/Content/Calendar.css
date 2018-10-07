@@ -7,12 +7,16 @@
     border-color: white;
 }
 
-.calendar-cell-th {
+.calendar-cell-header {
     background-color: powderblue;
 }
 
-.calendar-cell-td:hover {
+.calendar-cell-active:hover {
     background-color: lightgreen;
+}
+
+.calendar-cell-inactive {
+    background-color: lightgrey;
 }
 
 .calendar-cell-selected {
