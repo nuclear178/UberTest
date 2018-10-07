@@ -4,7 +4,8 @@ namespace WebApplication.Forms.Courses
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string SpendingTimeStart { get; set; }
-        public string SpendingTimeEnd { get; set; }
+        public int SpendingStartHour { get; set; }
+        public int SpendingEndHour { get; set; }
+        public string DayOfWeek { get; set; }
     }
 }

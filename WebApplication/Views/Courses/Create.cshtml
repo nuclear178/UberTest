@@ -33,11 +33,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SpendingTimeStart, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.Label("Time spending", htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.Partial("_Calendar", Model)
-                @Html.ValidationMessageFor(model => model.SpendingTimeStart, "", new {@class = "text-danger"})
-                @Html.ValidationMessageFor(model => model.SpendingTimeEnd, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.SpendingStartHour, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.SpendingEndHour, "", new {@class = "text-danger"})
             </div>
         </div>
 

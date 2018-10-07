@@ -30,7 +30,7 @@ namespace Application.Services
                 PublicationDate = DateTime.Now,
                 SpendingTime = new Time
                 {
-                    DayOfWeek = dto.StartDayOfWeek,
+                    DayOfWeek = dto.DayOfWeek,
                     StartTimeHour = dto.StartHour,
                     EndTimeHour = dto.EndHour
                 }

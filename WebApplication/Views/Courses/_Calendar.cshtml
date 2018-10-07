@@ -7,8 +7,9 @@
 
 <link href="@Url.Content("~/Content/Calendar.css")" rel="stylesheet" type="text/css"/>
 
-@Html.HiddenFor(model => model.SpendingTimeStart)
-@Html.HiddenFor(model => model.SpendingTimeEnd)
+@Html.HiddenFor(model => model.DayOfWeek)
+@Html.HiddenFor(model => model.SpendingStartHour)
+@Html.HiddenFor(model => model.SpendingEndHour)
 
 <table class="table-bordered">
     <tr>
@@ -48,8 +49,9 @@
 
     function setStateSelectedNone() {
         state = STATE_SELECTED_NONE;
-        $('#SpendingTimeStart').val(null);
-        $('#SpendingTimeEnd').val(null);
+        $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(null);
+        $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(null);
+        $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(null);
 
         $('.calendar-cell').each(function() {
             var currentCell = $(this);
@@ -83,7 +85,7 @@
             currentCell.click(function() {
                 selectCell(currentCell); //TODO :: range
                 deactivateAfter(day, hour);
-                fillTimeEndInput(day, hour);
+                fillTimeEndInput(hour);
 
                 setStateSelectedBoth();
             });
@@ -121,8 +123,8 @@
         console.log(day + hour);
     }
 
-    function fillTimeEndInput(day, hour) {
-        $('#SpendingTimeEnd').val(day + '|' + hour);
+    function fillTimeEndInput(hour) {
+        $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(hour);
     }
 
     function selectCell(cell) {
@@ -144,6 +146,7 @@
     }
 
     function fillTimeStartInput(day, hour) {
-        $('#SpendingTimeStart').val(day + '|' + hour);
+        $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(day);
+        $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(hour);
     }
 </script>

@@ -77,17 +77,13 @@ namespace WebApplication.Controllers
 
             try
             {
-                var timeParser = new TimeParser();
-                (DayOfWeek, int) timeStart = timeParser.Parse(form.SpendingTimeStart);
-                (DayOfWeek, int) timeEnd = timeParser.Parse(form.SpendingTimeEnd);
-
                 var input = new CreateCourseDto
                 {
                     Title = form.Title,
                     Description = form.Description,
-                    StartDayOfWeek = timeStart.Item1,
-                    StartHour = timeStart.Item2,
-                    EndHour = timeEnd.Item2
+                    DayOfWeek = new DayOfWeekParser().Parse(form.DayOfWeek),
+                    StartHour = form.SpendingStartHour,
+                    EndHour = form.SpendingEndHour
                 };
                 _universityService.CreateCourse(input, out var id);
 

@@ -2,36 +2,25 @@ using System;
 
 namespace WebApplication.Models
 {
-    public class TimeParser
+    public class DayOfWeekParser
     {
-        public (DayOfWeek, int) Parse(string dayHour)
+        public DayOfWeek Parse(string dayOfWeek)
         {
-            string[] chunks = dayHour.Split('|');
-            DayOfWeek dayOfWeek;
-            switch (chunks[0])
+            switch (dayOfWeek)
             {
                 case "Mon":
-                    dayOfWeek = DayOfWeek.Monday;
-                    break;
+                    return DayOfWeek.Monday;
                 case "Tue":
-                    dayOfWeek = DayOfWeek.Tuesday;
-                    break;
+                    return DayOfWeek.Tuesday;
                 case "Wed":
-                    dayOfWeek = DayOfWeek.Wednesday;
-                    break;
+                    return DayOfWeek.Wednesday;
                 case "Thu":
-                    dayOfWeek = DayOfWeek.Thursday;
-                    break;
+                    return DayOfWeek.Thursday;
                 case "Fri":
-                    dayOfWeek = DayOfWeek.Friday;
-                    break;
+                    return DayOfWeek.Friday;
                 default:
                     throw new Exception("Day of week parsing error.");
             }
-
-            var hour = Convert.ToInt32(chunks[1]);
-
-            return (dayOfWeek, hour);
         }
     }
 }
