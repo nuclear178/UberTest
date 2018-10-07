@@ -51,6 +51,7 @@ namespace WebApplication.Controllers
             }
             catch (ApplicationException e)
             {
+                Console.WriteLine(e); //Log
                 return HttpNotFound();
             }
         }
@@ -71,15 +72,23 @@ namespace WebApplication.Controllers
                 return View(form);
             }
 
-            var input = new CreateCourseDto
+            try
             {
-                Title = form.Title,
-                Description = form.Description,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-            };
-            _universityService.CreateCourse(input, out var id);
-            return RedirectToAction("Details", new {id});
+                var input = new CreateCourseDto
+                {
+                    Title = form.Title,
+                    Description = form.Description,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                };
+                _universityService.CreateCourse(input, out var id);
+                return RedirectToAction("Details", new {id});
+            }
+            catch (ApplicationException e)
+            {
+                Console.WriteLine(e); //Log
+                return HttpNotFound();
+            }
         }
 
         // GET: Courses/Edit/5
@@ -111,14 +120,22 @@ namespace WebApplication.Controllers
                 return View(form);
             }
 
-            var input = new EditCourseDto
+            try
             {
-                Title = form.Title,
-                Description = form.Description,
-            };
-            _universityService.EditCourse(input);
+                var input = new EditCourseDto
+                {
+                    Title = form.Title,
+                    Description = form.Description,
+                };
+                _universityService.EditCourse(input);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (ApplicationException e)
+            {
+                Console.WriteLine(e); //Log
+                return HttpNotFound();
+            }
         }
 
         // GET: Courses/Delete/5
