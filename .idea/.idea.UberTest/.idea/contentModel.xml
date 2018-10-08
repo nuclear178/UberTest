@@ -152,6 +152,7 @@
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Courses" t="Include">
             <e p="_Calendar.cshtml" t="Include" />
+            <e p="_CalendarWidget.cshtml" t="Include" />
             <e p="Create.cshtml" t="Include" />
             <e p="Details.cshtml" t="Include" />
             <e p="Edit.cshtml" t="Include" />

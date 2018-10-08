@@ -1,4 +1,5 @@
-﻿@using WebApplication.ViewModels.Courses
+﻿@using WebApplication.Forms.Courses
+@using WebApplication.ViewModels.Courses
 @model WebApplication.ViewModels.Courses.CourseIndexViewModel
 
 @{
@@ -29,7 +30,7 @@
 
             @foreach (CourseIndexItemViewModel item in Model.Courses)
             {
-                <tr data-day="@item.DayOfWeek" data-startHour="@item.StartHour" data-endHour="@item.EndHour">
+                <tr class="item-row" data-day="@item.DayOfWeek" data-startHour="@item.StartHour" data-endHour="@item.EndHour">
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
@@ -50,6 +51,14 @@
         </table>
     </div>
     <div class="col-md-3">
-        <h1>Welcome!</h1>
+        @Html.Partial("_Calendar", new CreateCourseForm())
     </div>
 </div>
+<script>
+    $('.item-row').each(function() {
+        var itemRow = $(this);
+        itemRow.hover(function() {
+            console.log(itemRow.data('day'));
+        });
+    });
+</script>

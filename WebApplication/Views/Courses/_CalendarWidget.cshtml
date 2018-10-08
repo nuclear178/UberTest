@@ -1,0 +1,123 @@
+@model WebApplication.Forms.Courses.CreateCourseForm
+
+@Html.Partial("_Calendar", Model);
+<script>
+
+    var STATE_SELECTED_NONE = 0;
+    var STATE_SELECTED_START = 1;
+    var STATE_SELECTED_BOTH = 2;
+
+    function defineState() {
+        switch ($('.calendar-cell-selected').length) {
+        case 0:
+            return STATE_SELECTED_NONE;
+        case 2:
+            return STATE_SELECTED_BOTH;
+        default:
+            return STATE_SELECTED_START;
+        }
+    }
+
+    function setStateSelectedNone() {
+        state = STATE_SELECTED_NONE;
+        $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(null);
+        $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(null);
+        $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(null);
+
+        $('.calendar-cell').each(function() {
+            var currentCell = $(this);
+
+            currentCell.unbind('click');
+            currentCell.removeClass('calendar-cell-selected');
+            currentCell.removeClass('calendar-cell-inactive');
+            currentCell.addClass('calendar-cell-active');
+
+            var day = currentCell.data('day');
+            var hour = currentCell.data('hour');
+            currentCell.click(function() {
+                selectCell(currentCell);
+                deactivateBefore(day, hour);
+                fillTimeStartInput(day, hour);
+
+                setStateSelectedStart();
+            });
+        });
+    }
+
+    function setStateSelectedStart() {
+        state = STATE_SELECTED_START;
+        $('.calendar-cell-active').each(function() {
+            var currentCell = $(this);
+
+            currentCell.unbind('click');
+
+            var day = currentCell.data('day');
+            var hour = currentCell.data('hour');
+            currentCell.click(function() {
+                selectCell(currentCell); //TODO :: range
+                deactivateAfter(day, hour);
+                fillTimeEndInput(hour);
+
+                setStateSelectedBoth();
+            });
+        });
+    }
+
+    function setStateSelectedBoth() {
+        state = STATE_SELECTED_BOTH;
+        $('.calendar-cell').each(function() {
+            var currentCell = $(this);
+
+            currentCell.unbind('click');
+            if (!currentCell.hasClass('calendar-cell-selected')) {
+                currentCell.removeClass('calendar-cell-active');
+                currentCell.addClass('calendar-cell-inactive');
+            }
+
+            currentCell.click(function() {
+                setStateSelectedNone();
+            });
+        });
+    }
+
+    var state = defineState();
+    if (state === STATE_SELECTED_NONE) {
+        setStateSelectedNone();
+    }
+
+    function selectRange(cell) {
+        selectCell(cell);
+    }
+
+    function deactivateAfter(day, hour) {
+        //TODO :: IMPL
+        console.log(day + hour);
+    }
+
+    function fillTimeEndInput(hour) {
+        $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(hour);
+    }
+
+    function selectCell(cell) {
+        cell.addClass('calendar-cell-selected');
+        cell.addClass('calendar-cell-inactive');
+        cell.removeClass('calendar-cell-active');
+        cell.unbind('click');
+    }
+
+    function deactivateBefore(day, hour) {
+        $('.calendar-cell-active').each(function() {
+            var cell = $(this);
+            if (cell.data('day') !== day || cell.data('hour') < hour) {
+                cell.removeClass('calendar-cell-active');
+                cell.addClass('calendar-cell-inactive');
+                cell.unbind('click');
+            }
+        });
+    }
+
+    function fillTimeStartInput(day, hour) {
+        $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(day);
+        $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(hour);
+    }
+</script>
