@@ -18,8 +18,13 @@
         }
     }
 
+    var currentState = defineState();
+    if (currentState === STATE_SELECTED_NONE) {
+        setStateSelectedNone();
+    }
+
     function setStateSelectedNone() {
-        state = STATE_SELECTED_NONE;
+        currentState = STATE_SELECTED_NONE;
         $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(null);
         $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(null);
         $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(null);
@@ -45,7 +50,7 @@
     }
 
     function setStateSelectedStart() {
-        state = STATE_SELECTED_START;
+        currentState = STATE_SELECTED_START;
         $('.calendar-cell-active').each(function() {
             var currentCell = $(this);
 
@@ -62,7 +67,7 @@
     }
 
     function setStateSelectedBoth() {
-        state = STATE_SELECTED_BOTH;
+        currentState = STATE_SELECTED_BOTH;
         $('.calendar-cell').each(function() {
             var currentCell = $(this);
 
@@ -76,11 +81,6 @@
                 setStateSelectedNone();
             });
         });
-    }
-
-    var state = defineState();
-    if (state === STATE_SELECTED_NONE) {
-        setStateSelectedNone();
     }
 
     function selectRange(cell) {

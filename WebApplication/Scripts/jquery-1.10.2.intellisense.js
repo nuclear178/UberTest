@@ -607,7 +607,7 @@ intellisense.annotate(_object, {
     ///   <returns type="Deferred" />
     /// </signature>
   },
-  'state': function() {
+  'currentState': function() {
     /// <summary>Determine the current state of a Deferred object.</summary>
     /// <returns type="String" />
   },
