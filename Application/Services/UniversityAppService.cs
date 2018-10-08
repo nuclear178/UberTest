@@ -34,9 +34,6 @@ namespace Application.Services
                     StartTimeHour = dto.StartHour,
                     EndTimeHour = dto.EndHour
                 }
-                /*DayOfWeek = dto.StartDayOfWeek,
-                StartHour = dto.StartHour,
-                EndHour = dto.EndHour*/
             };
 
             _courseRepository.Insert(createdCourse);

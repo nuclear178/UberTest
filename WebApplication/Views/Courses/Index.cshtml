@@ -1,4 +1,4 @@
-﻿@using Application.Dtos
+﻿@using WebApplication.ViewModels.Courses
 @model WebApplication.ViewModels.Courses.CourseIndexViewModel
 
 @{
@@ -10,38 +10,46 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Title")
-        </th>
-        <th>
-            @Html.DisplayName("Description")
-        </th>
-        <th>
-            @Html.DisplayName("Publication date")
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (CourseDto item in Model.Courses)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublicationDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-            </td>
-        </tr>
-    }
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayName("Title")
+                </th>
+                <th>
+                    @Html.DisplayName("Description")
+                </th>
+                <th>
+                    @Html.DisplayName("Publication date")
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (CourseIndexItemViewModel item in Model.Courses)
+            {
+                <tr data-day="@item.DayOfWeek" data-startHour="@item.StartHour" data-endHour="@item.EndHour">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublicationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                        @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="col-md-3">
+        <h1>Welcome!</h1>
+    </div>
+</div>

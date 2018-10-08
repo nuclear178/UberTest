@@ -1,12 +1,21 @@
 using System;
+using Application.Dtos;
 
 namespace WebApplication.ViewModels.Courses
 {
     public class CourseDetailsViewModel
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime PublicationDate { get; set; }
+        public CourseDetailsViewModel(CourseDto model)
+        {
+            Id = model.Id;
+            Title = model.Title;
+            Description = model.Description;
+            PublicationDate = model.PublicationDate;
+        }
+
+        public int Id { get; }
+        public string Title { get; }
+        public string Description { get; }
+        public DateTime PublicationDate { get; }
     }
 }

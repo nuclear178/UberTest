@@ -12,7 +12,10 @@ namespace Application.Dtos.Assemblers
                 SerialNumber = entity.SerialNumber,
                 Title = entity.Title,
                 Description = entity.Description,
-                PublicationDate = entity.PublicationDate
+                PublicationDate = entity.PublicationDate,
+                DayOfWeek = entity.SpendingTime.DayOfWeek,
+                StartHour = entity.SpendingTime.StartTimeHour,
+                EndHour = entity.SpendingTime.EndTimeHour
             };
         }
     }

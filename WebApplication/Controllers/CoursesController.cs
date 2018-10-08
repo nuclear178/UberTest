@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -6,7 +7,6 @@ using Application.Dtos;
 using Application.Services;
 using Domain;
 using WebApplication.Forms.Courses;
-using WebApplication.Models;
 using WebApplication.ViewModels.Courses;
 
 namespace WebApplication.Controllers
@@ -23,10 +23,8 @@ namespace WebApplication.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            var viewModel = new CourseIndexViewModel
-            {
-                Courses = _universityService.ListCourses()
-            };
+            IEnumerable<CourseDto> models = _universityService.ListCourses();
+            var viewModel = new CourseIndexViewModel(models);
 
             return View(viewModel);
         }
@@ -42,13 +40,7 @@ namespace WebApplication.Controllers
             try
             {
                 CourseDto model = _universityService.FindCourse(id.Value);
-                var viewModel = new CourseDetailsViewModel
-                {
-                    Id = model.Id,
-                    Title = model.Title,
-                    Description = model.Description,
-                    PublicationDate = model.PublicationDate
-                };
+                var viewModel = new CourseDetailsViewModel(model);
 
                 return View(viewModel);
             }
@@ -77,15 +69,7 @@ namespace WebApplication.Controllers
 
             try
             {
-                var input = new CreateCourseDto
-                {
-                    Title = form.Title,
-                    Description = form.Description,
-                    DayOfWeek = new DayOfWeekParser().Parse(form.DayOfWeek),
-                    StartHour = form.SpendingStartHour,
-                    EndHour = form.SpendingEndHour
-                };
-                _universityService.CreateCourse(input, out var id);
+                _universityService.CreateCourse(form.ConvertToDto(), out var id);
 
                 return RedirectToAction("Details", new {id});
             }
@@ -135,13 +119,7 @@ namespace WebApplication.Controllers
 
             try
             {
-                var input = new EditCourseDto
-                {
-                    Id = form.Id,
-                    Title = form.Title,
-                    Description = form.Description,
-                };
-                _universityService.EditCourse(input);
+                _universityService.EditCourse(form.ConvertToDto());
 
                 return RedirectToAction("Index");
             }
