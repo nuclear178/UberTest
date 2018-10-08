@@ -55,10 +55,30 @@
     </div>
 </div>
 <script>
+    function cleanUpCalendar() {
+        $('.calendar-cell-selected').each(function() {
+            $(this).removeClass('calendar-cell-selected');
+        });
+    }
+
+    function setUpCalendar(day, startHour, endHour) {
+        $('.calendar-cell').each(function() {
+            var cell = $(this);
+            if (cell.data('day') === day && (cell.data('hour') === startHour || cell.data('hour') === endHour)) {
+                cell.addClass('calendar-cell-selected');
+            }
+        });
+    }
+
     $('.item-row').each(function() {
         var itemRow = $(this);
-        itemRow.hover(function() {
-            console.log(itemRow.data('day'));
-        });
+        itemRow.hover(
+            function() {
+                setUpCalendar(itemRow.data('day'), itemRow.data('starthour'), itemRow.data('endhour'));
+            },
+            function() {
+                cleanUpCalendar();
+            }
+        );
     });
 </script>
