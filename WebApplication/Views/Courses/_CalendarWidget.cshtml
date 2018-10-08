@@ -51,11 +51,9 @@
 
             currentCell.unbind('click');
 
-            var day = currentCell.data('day');
             var hour = currentCell.data('hour');
             currentCell.click(function() {
                 selectCell(currentCell); //TODO :: range
-                deactivateAfter(day, hour);
                 fillTimeEndInput(hour);
 
                 setStateSelectedBoth();
@@ -87,11 +85,6 @@
 
     function selectRange(cell) {
         selectCell(cell);
-    }
-
-    function deactivateAfter(day, hour) {
-        //TODO :: IMPL
-        console.log(day + hour);
     }
 
     function fillTimeEndInput(hour) {
