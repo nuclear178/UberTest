@@ -1,7 +1,8 @@
 @model WebApplication.Forms.Courses.CreateCourseForm
 
-@Html.Partial("_Calendar", Model);
+@Html.Partial("_Calendar", Model)
 <script>
+    var MAX_HOUR = 17;
 
     var STATE_SELECTED_NONE = 0;
     var STATE_SELECTED_START = 1;
@@ -32,19 +33,19 @@
         $('.calendar-cell').each(function() {
             var currentCell = $(this);
 
-            currentCell.unbind('click');
-            currentCell.removeClass('calendar-cell-selected');
-            currentCell.removeClass('calendar-cell-inactive');
-            currentCell.addClass('calendar-cell-active');
+            activateCell(currentCell);
 
-            var day = currentCell.data('day');
-            var hour = currentCell.data('hour');
+            var currentDay = currentCell.data('day');
+            var currentHour = currentCell.data('hour');
             currentCell.click(function() {
                 selectCell(currentCell);
-                deactivateBefore(day, hour);
-                fillTimeStartInput(day, hour);
-
+                deactivateCellsBefore(currentDay, currentHour);
+                fillTimeStartInput(currentDay, currentHour);
                 setStateSelectedStart();
+                if (currentHour === MAX_HOUR) {
+                    fillTimeEndInput(currentHour);
+                    setStateSelectedBoth();
+                }
             });
         });
     }
@@ -56,10 +57,10 @@
 
             currentCell.unbind('click');
 
-            var hour = currentCell.data('hour');
+            var currentHour = currentCell.data('hour');
             currentCell.click(function() {
-                selectCell(currentCell); //TODO :: range
-                fillTimeEndInput(hour);
+                selectCell(currentCell);
+                fillTimeEndInput(currentHour);
 
                 setStateSelectedBoth();
             });
@@ -83,14 +84,6 @@
         });
     }
 
-    function selectRange(cell) {
-        selectCell(cell);
-    }
-
-    function fillTimeEndInput(hour) {
-        $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(hour);
-    }
-
     function selectCell(cell) {
         cell.addClass('calendar-cell-selected');
         cell.addClass('calendar-cell-inactive');
@@ -98,7 +91,23 @@
         cell.unbind('click');
     }
 
-    function deactivateBefore(day, hour) {
+    function activateCell(cell) {
+        cell.removeClass('calendar-cell-selected');
+        cell.removeClass('calendar-cell-inactive');
+        cell.addClass('calendar-cell-active');
+        cell.unbind('click');
+    }
+
+    function fillTimeEndInput(hour) {
+        $('#@Html.DisplayNameFor(model => model.SpendingEndHour)').val(hour);
+    }
+
+    function fillTimeStartInput(day, hour) {
+        $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(day);
+        $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(hour);
+    }
+
+    function deactivateCellsBefore(day, hour) {
         $('.calendar-cell-active').each(function() {
             var cell = $(this);
             if (cell.data('day') !== day || cell.data('hour') < hour) {
@@ -107,10 +116,5 @@
                 cell.unbind('click');
             }
         });
-    }
-
-    function fillTimeStartInput(day, hour) {
-        $('#@Html.DisplayNameFor(model => model.DayOfWeek)').val(day);
-        $('#@Html.DisplayNameFor(model => model.SpendingStartHour)').val(hour);
     }
 </script>
