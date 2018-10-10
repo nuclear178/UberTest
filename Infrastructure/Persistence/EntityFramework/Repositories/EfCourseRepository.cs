@@ -8,44 +8,44 @@ namespace Infrastructure.Persistence.EntityFramework.Repositories
 {
     public class EfCourseRepository : ICourseRepository
     {
-        private readonly UniversityContext _context;
+        private readonly UniversityContext _db;
 
-        public EfCourseRepository(UniversityContext context)
+        public EfCourseRepository(UniversityContext db)
         {
-            _context = context;
+            _db = db;
         }
 
         public Course Find(int id)
         {
-            return _context.Courses.Find(id);
+            return _db.Courses.Find(id);
         }
 
         public IEnumerable<Course> FindAll()
         {
-            return _context.Courses.ToList();
+            return _db.Courses.ToList();
         }
 
         public void Insert(Course entity)
         {
-            _context.Courses.Add(entity);
-            _context.SaveChanges();
+            _db.Courses.Add(entity);
+            _db.SaveChanges();
         }
 
         public void Update(Course entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            _db.Entry(entity).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Remove(int id)
         {
-            Course course = _context.Courses.Find(id);
+            Course course = _db.Courses.Find(id);
             if (course != null)
             {
-                _context.Courses.Remove(course);
+                _db.Courses.Remove(course);
             }
 
-            _context.SaveChanges();
+            _db.SaveChanges();
         }
     }
 }

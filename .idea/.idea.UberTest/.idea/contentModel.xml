@@ -3,8 +3,8 @@
   <component name="ContentModelStore">
     <e p="C:\Users\Alex\.Rider2018.2\config\consoles\db" t="IncludeRecursive" />
     <e p="C:\Users\Alex\.Rider2018.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Alex\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_UberTest.-1318341533.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Alex\RiderProjects\UberTest" t="IncludeFlat">
+    <e p="C:\Users\Alex\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_UberTest.722517899.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Alex\Desktop\UberTest" t="IncludeFlat">
       <e p="Application" t="IncludeRecursive">
         <e p="Application.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />

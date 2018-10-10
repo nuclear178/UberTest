@@ -64,7 +64,7 @@
     function setUpCalendar(day, startHour, endHour) {
         $('.calendar-cell').each(function() {
             var cell = $(this);
-            if (cell.data('day') === day && (cell.data('hour') === startHour || cell.data('hour') === endHour)) {
+            if (cell.data('day') === day && cell.data('hour') >= startHour && cell.data('hour') <= endHour) {
                 cell.addClass('calendar-cell-selected');
             }
         });
