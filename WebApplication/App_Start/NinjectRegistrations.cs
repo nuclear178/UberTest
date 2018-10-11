@@ -17,7 +17,7 @@ namespace WebApplication
         {
             //UI
             Unbind<ModelValidatorProvider>();
-            Bind<IFormTempStorage<EditCourseForm>>().To<SessionEditCourseFormTempStorage>();
+            Bind<ITempStorage<EditCourseForm>>().To<SessionEditCourseFormTempStorage>();
 
             //Data layer
             Bind<UniversityContext>().To<UniversityContext>();

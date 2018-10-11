@@ -112,7 +112,7 @@
         <e p="Global.asax.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="DateTimeAssembler.cs" t="Include" />
-          <e p="IFormTempStorage.cs" t="Include" />
+          <e p="ITempStorage.cs" t="Include" />
           <e p="MultipleButtonAttribute.cs" t="Include" />
           <e p="SessionEditCourseFormTempStorage.cs" t="Include" />
         </e>

@@ -4,7 +4,7 @@ using WebApplication.Forms.Courses;
 
 namespace WebApplication.Models
 {
-    public class SessionEditCourseFormTempStorage : IFormTempStorage<EditCourseForm>
+    public class SessionEditCourseFormTempStorage : ITempStorage<EditCourseForm>
     {
         private const string EditFormKeyPrefix = "EditCourseForm_";
 

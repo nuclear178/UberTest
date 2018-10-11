@@ -1,6 +1,6 @@
 namespace WebApplication.Models
 {
-    public interface IFormTempStorage<TForm>
+    public interface ITempStorage<TForm>
     {
         TForm Get(int formId);
 

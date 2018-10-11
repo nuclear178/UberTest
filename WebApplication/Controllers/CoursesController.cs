@@ -15,10 +15,10 @@ namespace WebApplication.Controllers
     public class CoursesController : Controller
     {
         private readonly IUniversityAppService _universityService;
-        private readonly IFormTempStorage<EditCourseForm> _editFormStorage;
+        private readonly ITempStorage<EditCourseForm> _editFormStorage;
 
         public CoursesController(IUniversityAppService universityService,
-            IFormTempStorage<EditCourseForm> editFormStorage)
+            ITempStorage<EditCourseForm> editFormStorage)
         {
             _universityService = universityService;
             _editFormStorage = editFormStorage;
