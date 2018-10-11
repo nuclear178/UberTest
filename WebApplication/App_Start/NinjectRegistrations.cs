@@ -6,6 +6,8 @@ using Infrastructure.Domain;
 using Infrastructure.Persistence.EntityFramework;
 using Infrastructure.Persistence.EntityFramework.Repositories;
 using Ninject.Modules;
+using WebApplication.Forms.Courses;
+using WebApplication.Models;
 
 namespace WebApplication
 {
@@ -15,6 +17,7 @@ namespace WebApplication
         {
             //UI
             Unbind<ModelValidatorProvider>();
+            Bind<IFormTempStorage<EditCourseForm>>().To<SessionEditCourseFormTempStorage>();
 
             //Data layer
             Bind<UniversityContext>().To<UniversityContext>();

@@ -14,13 +14,14 @@ namespace WebApplication.Controllers
 {
     public class CoursesController : Controller
     {
-        private const string EditFormKeyPrefix = "EditCourseForm_";
-
         private readonly IUniversityAppService _universityService;
+        private readonly IFormTempStorage<EditCourseForm> _editFormStorage;
 
-        public CoursesController(IUniversityAppService universityService)
+        public CoursesController(IUniversityAppService universityService,
+            IFormTempStorage<EditCourseForm> editFormStorage)
         {
             _universityService = universityService;
+            _editFormStorage = editFormStorage;
         }
 
         // GET: Courses
@@ -93,16 +94,11 @@ namespace WebApplication.Controllers
 
             try
             {
-                EditCourseForm form;
-                if (Session[EditFormKeyPrefix + id.Value] == null)
-                {
-                    CourseDto model = _universityService.FindCourse(id.Value);
-                    form = EditCourseForm.CreateFromModel(model);
-                }
-                else
-                {
-                    form = Session[EditFormKeyPrefix + id.Value] as EditCourseForm;
-                }
+                EditCourseForm form = _editFormStorage.Contains(id.Value)
+                    ? _editFormStorage.Get(id.Value)
+                    : EditCourseForm.CreateFromModel(
+                        _universityService.FindCourse(id.Value)
+                    );
 
                 return View(form);
             }
@@ -127,7 +123,7 @@ namespace WebApplication.Controllers
             try
             {
                 _universityService.EditCourse(form.ConvertToDto());
-                Session[EditFormKeyPrefix + form.Id] = null;
+                _editFormStorage.Clear(form.Id);
 
                 return RedirectToAction("Index");
             }
@@ -143,15 +139,23 @@ namespace WebApplication.Controllers
         [MultipleButton(Name = "Edit", Argument = "Preview")]
         public ActionResult PreviewEdit(EditCourseForm form)
         {
-            Session[EditFormKeyPrefix + form.Id] = form;
+            _editFormStorage.Set(form.Id, form);
 
-            CourseDto model = _universityService.FindCourse(form.Id);
-            model.Title = form.Title;
-            model.Description = form.Description;
+            try
+            {
+                CourseDto model = _universityService.FindCourse(form.Id);
+                model.Title = form.Title;
+                model.Description = form.Description;
 
-            var viewModel = new CourseDetailsViewModel(model);
+                var viewModel = new CourseDetailsViewModel(model);
 
-            return View("PreviewEdit", viewModel);
+                return View("PreviewEdit", viewModel);
+            }
+            catch (DomainException e)
+            {
+                Console.WriteLine(e); //Log
+                return HttpNotFound();
+            }
         }
 
         // GET: Courses/ConfirmEdit/5
@@ -162,14 +166,9 @@ namespace WebApplication.Controllers
                 return HttpNotFound();
             }
 
-            if (Session[EditFormKeyPrefix + id.Value] == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var form = Session[EditFormKeyPrefix + id.Value] as EditCourseForm;
-
-            return Edit(form);
+            return _editFormStorage.Contains(id.Value)
+                ? Edit(_editFormStorage.Get(id.Value))
+                : new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         // GET: Courses/Delete/5
