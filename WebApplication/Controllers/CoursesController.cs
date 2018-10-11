@@ -91,12 +91,7 @@ namespace WebApplication.Controllers
             try
             {
                 CourseDto model = _universityService.FindCourse(id.Value);
-                var form = new EditCourseForm
-                {
-                    Id = model.Id,
-                    Title = model.Title,
-                    Description = model.Description
-                };
+                EditCourseForm form = EditCourseForm.CreateFromModel(model);
 
                 return View(form);
             }
