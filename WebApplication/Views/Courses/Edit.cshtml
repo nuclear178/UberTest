@@ -7,8 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
-{
+<form action="" method="post">
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -35,11 +34,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default"/>
+                <input type="submit" value="Save" name="Edit:Save" class="btn btn-primary"/>
+                <input type="submit" value="Preview" name="Edit:Preview" class="btn btn-default"/>
             </div>
         </div>
     </div>
-}
+</form>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

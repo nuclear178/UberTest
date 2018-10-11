@@ -1,0 +1,14 @@
+@model WebApplication.ViewModels.Courses.CourseDetailsViewModel
+
+@{
+    ViewBag.Title = "Preview";
+}
+
+<h2>Preview</h2>
+
+@Html.Partial("_DetailsBody", Model)
+@Html.ActionLink("Confirm", "ConfirmEdit", new {id = Model.Id}, new {@class = "btn btn-success"})
+@Html.ActionLink("Edit", "Edit", new {id = Model.Id}, new {@class = "btn btn-default"})
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
