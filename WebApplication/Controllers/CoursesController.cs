@@ -8,6 +8,7 @@ using Application.Services;
 using Domain;
 using WebApplication.Forms.Courses;
 using WebApplication.Models;
+using WebApplication.Models.ActionFilters;
 using WebApplication.ViewModels.Courses;
 
 namespace WebApplication.Controllers
@@ -111,7 +112,7 @@ namespace WebApplication.Controllers
 
         // POST: Courses/Edit/5
         [HttpPost]
-        [MultipleButton(Name = "Edit", Argument = "Save")]
+        [HttpParamAction]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditCourseForm form)
         {
@@ -136,7 +137,7 @@ namespace WebApplication.Controllers
 
         // POST: Courses/Edit/5
         [HttpPost]
-        [MultipleButton(Name = "Edit", Argument = "Preview")]
+        [HttpParamAction]
         public ActionResult PreviewEdit(EditCourseForm form)
         {
             _editFormStorage.Set(form.Id, form);

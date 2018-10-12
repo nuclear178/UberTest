@@ -111,9 +111,11 @@
         <e p="Global.asax" t="Include" />
         <e p="Global.asax.cs" t="Include" />
         <e p="Models" t="Include">
-          <e p="DateTimeAssembler.cs" t="Include" />
+          <e p="ActionFilters" t="Include">
+            <e p="HttpParamActionAttribute.cs" t="Include" />
+          </e>
+          <e p="DayOfWeekParser.cs" t="Include" />
           <e p="ITempStorage.cs" t="Include" />
-          <e p="MultipleButtonAttribute.cs" t="Include" />
           <e p="SessionEditCourseFormTempStorage.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />

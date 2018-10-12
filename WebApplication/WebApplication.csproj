@@ -146,10 +146,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DateTimeAssembler.cs" />
+    <Compile Include="Models\ActionFilters\HttpParamActionAttribute.cs" />
+    <Compile Include="Models\DayOfWeekParser.cs" />
     <Compile Include="Models\SessionEditCourseFormTempStorage.cs" />
     <Compile Include="Models\ITempStorage.cs" />
-    <Compile Include="Models\MultipleButtonAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Courses\CourseDetailsViewModel.cs" />
     <Compile Include="ViewModels\Courses\CourseIndexItemViewModel.cs" />
