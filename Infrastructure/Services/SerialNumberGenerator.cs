@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Domain.Services;
 
-namespace Infrastructure.Domain
+namespace Infrastructure.Services
 {
     public class SerialNumberGenerator : ISerialNumberGenerator
     {

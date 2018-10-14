@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Application.Dtos;
 using Application.Dtos.Assemblers;
 using Domain;
-using Domain.Models;
+using Domain.Entities;
 using Domain.Services;
 using Domain.Services.Repositories;
 

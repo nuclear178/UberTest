@@ -43,8 +43,8 @@
     <Compile Include="Dtos\CourseDto.cs" />
     <Compile Include="Dtos\CreateCourseDto.cs" />
     <Compile Include="Dtos\EditCourseDto.cs" />
+    <Compile Include="IUniversityAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IUniversityAppService.cs" />
     <Compile Include="Services\UniversityAppService.cs" />
   </ItemGroup>
   <ItemGroup>

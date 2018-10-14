@@ -1,7 +1,7 @@
 using System.Data.Entity;
-using Domain.Models;
+using Domain.Entities;
 
-namespace Infrastructure.Persistence.EntityFramework
+namespace Infrastructure.Data
 {
     public class UniversityContext : DbContext
     {
@@ -11,14 +11,14 @@ namespace Infrastructure.Persistence.EntityFramework
 
         public DbSet<Course> Courses { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder builder)
         {
             Database.SetInitializer(new UniversityDbInitializer());
 
-            modelBuilder.Entity<Course>()
-                .HasKey(model => model.Id);
+            builder.Entity<Course>()
+                .HasKey(c => c.Id);
 
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
         }
     }
 }

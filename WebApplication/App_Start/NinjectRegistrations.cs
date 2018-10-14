@@ -1,10 +1,11 @@
 using System.Web.Mvc;
+using Application;
 using Application.Services;
 using Domain.Services;
 using Domain.Services.Repositories;
-using Infrastructure.Domain;
-using Infrastructure.Persistence.EntityFramework;
-using Infrastructure.Persistence.EntityFramework.Repositories;
+using Infrastructure.Data;
+using Infrastructure.Data.Repositories;
+using Infrastructure.Services;
 using Ninject.Modules;
 using WebApplication.Forms.Courses;
 using WebApplication.Models;

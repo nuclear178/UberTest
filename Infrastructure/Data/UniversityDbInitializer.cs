@@ -1,6 +1,6 @@
 using System.Data.Entity;
 
-namespace Infrastructure.Persistence.EntityFramework
+namespace Infrastructure.Data
 {
     public class UniversityDbInitializer : DropCreateDatabaseIfModelChanges<UniversityContext>
     {
