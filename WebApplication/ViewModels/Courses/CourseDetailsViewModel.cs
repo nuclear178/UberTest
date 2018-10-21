@@ -10,12 +10,12 @@ namespace WebApplication.ViewModels.Courses
             Id = model.Id;
             Title = model.Title;
             Description = model.Description;
-            PublicationDate = model.PublicationDate;
+            CreationDate = model.CreationDate;
         }
 
         public int Id { get; }
         public string Title { get; }
         public string Description { get; }
-        public DateTime PublicationDate { get; }
+        public DateTime CreationDate { get; }
     }
 }

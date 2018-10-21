@@ -15,7 +15,7 @@ namespace WebApplication.ViewModels.Courses
                 Id = model.Id,
                 Title = model.Title,
                 Description = model.Description,
-                PublicationDate = model.PublicationDate,
+                CreationDate = model.CreationDate,
                 DayOfWeek = dayOfWeekParser.Stringify(model.DayOfWeek),
                 StartHour = model.StartHour,
                 EndHour = model.EndHour

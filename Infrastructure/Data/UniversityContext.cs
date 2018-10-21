@@ -39,7 +39,7 @@ namespace Infrastructure.Data
                 .IsRequired()
                 .HasMaxLength(1000);
 
-            builder.Property(c => c.PublicationDate)
+            builder.Property(c => c.CreationDate)
                 .IsRequired();
         }
     }

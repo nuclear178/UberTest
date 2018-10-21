@@ -27,12 +27,12 @@ namespace Application.Services
                 SerialNumber = _serialNumberGenerator.Generate(),
                 Title = dto.Title,
                 Description = dto.Description,
-                PublicationDate = DateTime.UtcNow,
+                CreationDate = DateTime.UtcNow,
                 SpendingTime = new Time
                 {
                     DayOfWeek = dto.DayOfWeek,
-                    StartTimeHour = dto.StartHour,
-                    EndTimeHour = dto.EndHour
+                    StartHour = dto.StartHour,
+                    EndHour = dto.EndHour
                 }
             };
 

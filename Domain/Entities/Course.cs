@@ -8,7 +8,7 @@ namespace Domain.Entities
         public string SerialNumber { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime PublicationDate { get; set; }
+        public DateTime CreationDate { get; set; }
         public Time SpendingTime { get; set; }
     }
 }
