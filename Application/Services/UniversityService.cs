@@ -27,7 +27,7 @@ namespace Application.Services
                 SerialNumber = _serialNumberGenerator.Generate(),
                 Title = dto.Title,
                 Description = dto.Description,
-                PublicationDate = DateTime.Now,
+                PublicationDate = DateTime.UtcNow,
                 SpendingTime = new Time
                 {
                     DayOfWeek = dto.DayOfWeek,
