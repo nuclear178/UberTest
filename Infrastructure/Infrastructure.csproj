@@ -50,7 +50,6 @@
     <Compile Include="Data\Repositories\EfCourseRepository.cs" />
     <Compile Include="Data\UniversityContext.cs" />
     <Compile Include="Data\UniversityDbInitializer.cs" />
-    <Compile Include="Services\SerialNumberGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

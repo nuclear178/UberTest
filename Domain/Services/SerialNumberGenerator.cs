@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Domain.Services;
+using Domain.Interfaces;
 
-namespace Infrastructure.Services
+namespace Domain.Services
 {
     public class SerialNumberGenerator : ISerialNumberGenerator
     {

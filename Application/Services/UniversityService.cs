@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using Application.Dtos;
 using Application.Dtos.Assemblers;
-using Domain;
+using Application.Interfaces;
 using Domain.Entities;
-using Domain.Services;
-using Domain.Services.Repositories;
+using Domain.Exceptions;
+using Domain.Interfaces;
 
 namespace Application.Services
 {
-    public class UniversityAppService : IUniversityAppService
+    public class UniversityService : IUniversityService
     {
         private readonly ICourseRepository _courseRepository;
         private readonly ISerialNumberGenerator _serialNumberGenerator;
 
-        public UniversityAppService(ICourseRepository courseRepository, ISerialNumberGenerator serialNumberGenerator)
+        public UniversityService(ICourseRepository courseRepository, ISerialNumberGenerator serialNumberGenerator)
         {
             _courseRepository = courseRepository;
             _serialNumberGenerator = serialNumberGenerator;

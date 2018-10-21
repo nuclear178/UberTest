@@ -1,11 +1,11 @@
 using System.Web.Mvc;
 using Application;
+using Application.Interfaces;
 using Application.Services;
+using Domain.Interfaces;
 using Domain.Services;
-using Domain.Services.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
-using Infrastructure.Services;
 using Ninject.Modules;
 using WebApplication.Forms.Courses;
 using WebApplication.Models;
@@ -25,7 +25,7 @@ namespace WebApplication
             Bind<ICourseRepository>().To<EfCourseRepository>();
 
             //Application services
-            Bind<IUniversityAppService>().To<UniversityAppService>();
+            Bind<IUniversityService>().To<UniversityService>();
 
             //Domain services
             Bind<ISerialNumberGenerator>().To<SerialNumberGenerator>();

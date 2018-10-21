@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Domain.Entities;
 
-namespace Domain.Services.Repositories
+namespace Domain.Interfaces
 {
     public interface ICourseRepository
     {

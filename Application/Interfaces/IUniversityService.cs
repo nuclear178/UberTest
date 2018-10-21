@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Application.Dtos;
 
-namespace Application
+namespace Application.Interfaces
 {
-    public interface IUniversityAppService
+    public interface IUniversityService
     {
         void CreateCourse(CreateCourseDto dto, out int id);
 

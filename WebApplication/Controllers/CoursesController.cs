@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Application;
 using Application.Dtos;
-using Application.Services;
-using Domain;
+using Application.Interfaces;
+using Domain.Exceptions;
 using WebApplication.Forms.Courses;
 using WebApplication.Models;
 using WebApplication.Models.ActionFilters;
@@ -16,10 +15,10 @@ namespace WebApplication.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly IUniversityAppService _universityService;
+        private readonly IUniversityService _universityService;
         private readonly ITempStorage<EditCourseForm> _editFormStorage;
 
-        public CoursesController(IUniversityAppService universityService,
+        public CoursesController(IUniversityService universityService,
             ITempStorage<EditCourseForm> editFormStorage)
         {
             _universityService = universityService;
