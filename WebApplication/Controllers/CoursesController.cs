@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +14,8 @@ namespace WebApplication.Controllers
 {
     public class CoursesController : Controller
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private readonly IUniversityService _universityService;
         private readonly ITempStorage<EditCourseForm> _editFormStorage;
 
@@ -42,7 +43,7 @@ namespace WebApplication.Controllers
             }
             catch (DomainException e)
             {
-                Console.WriteLine(e); //Log
+                Logger.Error(e);
                 return HttpNotFound();
             }
         }
@@ -69,7 +70,7 @@ namespace WebApplication.Controllers
             }
             catch (DomainException e)
             {
-                Console.WriteLine(e); //Log
+                Logger.Error(e);
                 throw new HttpException(503, e.Message);
             }
         }
@@ -93,7 +94,7 @@ namespace WebApplication.Controllers
             }
             catch (DomainException e)
             {
-                Console.WriteLine(e); //Log
+                Logger.Error(e);
                 return HttpNotFound();
             }
         }
@@ -117,7 +118,7 @@ namespace WebApplication.Controllers
             }
             catch (DomainException e)
             {
-                Console.WriteLine(e); //Log
+                Logger.Error(e);
                 throw new HttpException(503, e.Message);
             }
         }
@@ -140,7 +141,7 @@ namespace WebApplication.Controllers
             }
             catch (DomainException e)
             {
-                Console.WriteLine(e); //Log
+                Logger.Error(e);
                 return HttpNotFound();
             }
         }
