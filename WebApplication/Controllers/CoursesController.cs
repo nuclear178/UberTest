@@ -18,14 +18,6 @@ namespace WebApplication.Controllers
         private readonly IUniversityService _universityService;
         private readonly ITempStorage<EditCourseForm> _editFormStorage;
 
-        public CoursesController(IUniversityService universityService,
-            ITempStorage<EditCourseForm> editFormStorage)
-        {
-            _universityService = universityService;
-            _editFormStorage = editFormStorage;
-        }
-
-        // GET: Courses
         public ActionResult Index()
         {
             IEnumerable<CourseDto> models = _universityService.ListCourses();
@@ -34,7 +26,6 @@ namespace WebApplication.Controllers
             return View(viewModel);
         }
 
-        // GET: Courses/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -56,13 +47,11 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Courses/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Courses/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCourseForm form)
@@ -85,7 +74,6 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Courses/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -110,7 +98,6 @@ namespace WebApplication.Controllers
             }
         }
 
-        // POST: Courses/Edit/5
         [HttpPost]
         [HttpParamAction]
         [ValidateAntiForgeryToken]
@@ -135,7 +122,6 @@ namespace WebApplication.Controllers
             }
         }
 
-        // POST: Courses/Edit/5
         [HttpPost]
         [HttpParamAction]
         public ActionResult PreviewEdit(EditCourseForm form)
@@ -159,7 +145,6 @@ namespace WebApplication.Controllers
             }
         }
 
-        // GET: Courses/ConfirmEdit/5
         public ActionResult ConfirmEdit(int? id)
         {
             if (id == null)
@@ -172,7 +157,6 @@ namespace WebApplication.Controllers
                 : new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
-        // GET: Courses/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -183,6 +167,13 @@ namespace WebApplication.Controllers
             _universityService.DeleteCourse(id.Value);
 
             return RedirectToAction("Index");
+        }
+
+        public CoursesController(IUniversityService universityService,
+            ITempStorage<EditCourseForm> editFormStorage)
+        {
+            _universityService = universityService;
+            _editFormStorage = editFormStorage;
         }
     }
 }
